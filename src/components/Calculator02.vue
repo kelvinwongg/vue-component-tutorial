@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-left: 50px;">
+  <div>
     <h1>Discount Calculator</h1>
     <label>Price:</label>
     <input
@@ -28,7 +28,6 @@ export default {
   props: ['price', 'rate', 'discount'],
   data() {
     return {
-      flag: '',
       priceDisplay: this.getCurrency(this.price),
       priceNumber: this.getNumber(this.price),
       rateDisplay: this.getCurrency(this.rate),
@@ -39,55 +38,37 @@ export default {
   },
   watch: {
     priceNumber(newPrice) {
-      if (this.flag != 'price') {
-        // calculate discountNumber
-        let newDiscount = this.getNumber(newPrice * this.rateNumber / 100)
-        this.discountNumber = newDiscount
-        
-        // update currency display
-        this.discountDisplay = this.getCurrency(newDiscount)
+      // calculate discountNumber
+      let newDiscount = this.getNumber(newPrice * this.rateNumber / 100)
+      this.discountNumber = newDiscount
+      
+      // update currency display
+      this.discountDisplay = this.getCurrency(newDiscount)
 
-        // emit change
-        this.$emit('update:discount', newDiscount)
-
-        this.flag = 'discount'
-      } else {
-        this.flag = ''
-      }
+      // emit change
+      this.$emit('update:discount', newDiscount)
     },
     rateNumber(newRate) {
-      if (this.flag != 'rate') {
-        // calculate discountNumber
-        let newDiscount = this.getNumber(this.priceNumber * newRate / 100)
-        this.discountNumber = newDiscount
-        
-        // update currency display
-        this.discountDisplay = this.getCurrency(newDiscount)
+      // calculate discountNumber
+      let newDiscount = this.getNumber(this.priceNumber * newRate / 100)
+      this.discountNumber = newDiscount
+      
+      // update currency display
+      this.discountDisplay = this.getCurrency(newDiscount)
 
-        // emit change
-        this.$emit('update:discount', newDiscount)
-
-        this.flag = 'discount'
-      } else {
-        this.flag = ''
-      }
+      // emit change
+      this.$emit('update:discount', newDiscount)
     },
     discountNumber(newDiscount) {
-      if (this.flag != 'discount') {
-        // calculate rateNumber
-        let newRate = this.getNumber(newDiscount / this.priceNumber * 100)
-        this.rateNumber = newRate
+      // calculate rateNumber
+      let newRate = this.getNumber(newDiscount / this.priceNumber * 100)
+      this.rateNumber = newRate
 
-        // update currency display
-        this.rateDisplay = this.getCurrency(newRate)
+      // update currency display
+      this.rateDisplay = this.getCurrency(newRate)
 
-        // emit change
-        this.$emit('update:rate', newRate)
-
-        this.flag = 'rate'
-      } else {
-        this.flag = ''
-      }
+      // emit change
+      this.$emit('update:rate', newRate)
     }
   },
   methods: {
@@ -105,10 +86,6 @@ export default {
       this.$emit('update:'+input, this.getNumber(inputValue))
       this.$forceUpdate()
     }
-  }
+  },
 }
 </script>
-
-<style>
-
-</style>
