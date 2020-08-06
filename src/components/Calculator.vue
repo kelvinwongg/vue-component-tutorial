@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import numeral from 'numeral'
+
 export default {
   props: ['price', 'rate', 'discount'],
 }
