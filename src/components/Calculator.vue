@@ -26,6 +26,15 @@ import numeral from 'numeral'
 
 export default {
   props: ['price', 'rate', 'discount'],
+  methods: {
+    getNumber(string) {
+      const numberString = numeral(string).format('0,0.00')
+      return numeral(numberString).value()
+    },
+    getCurrency(number) {
+      return numeral(number).format('0,0.00')
+    },
+  }
 }
 </script>
 
