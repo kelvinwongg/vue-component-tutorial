@@ -2,8 +2,11 @@
   <div>
     <calculator
       :price="parentPrice"
+      @update:price="parentPrice = $event"
       :rate="parentRate"
+      @update:rate="parentRate = $event"
       :discount="parentDiscount"
+      @update:discount="parentDiscount = $event"
     />
   </div>
 </template>
