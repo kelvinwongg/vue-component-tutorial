@@ -1,6 +1,10 @@
 <template>
   <div>
-    <calculator />
+    <calculator
+      :price="parentPrice"
+      :rate="parentRate"
+      :discount="parentDiscount"
+    />
   </div>
 </template>
 

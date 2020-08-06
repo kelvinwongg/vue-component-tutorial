@@ -6,7 +6,7 @@
 
 <script>
 export default {
-
+  props: ['price', 'rate', 'discount'],
 }
 </script>
 
